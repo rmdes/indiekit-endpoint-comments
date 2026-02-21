@@ -1,0 +1,33 @@
+{
+  "comments": {
+    "title": "Comments",
+    "dashboard": {
+      "stats": "Stats",
+      "totalComments": "Total comments",
+      "thisWeek": "This week",
+      "uniqueCommenters": "Unique commenters",
+      "hiddenComments": "Hidden comments",
+      "commentList": "Comment list",
+      "filterAll": "All",
+      "filterPublic": "Public",
+      "filterHidden": "Hidden",
+      "hide": "Hide",
+      "purge": "Purge",
+      "purgeConfirm": "Are you sure?",
+      "restore": "Restore",
+      "noComments": "No comments yet.",
+      "recentActivity": "Recent activity",
+      "commentPosted": "Comment posted",
+      "commentHidden": "Comment hidden",
+      "commentPurged": "Comment purged",
+      "commentRestored": "Comment restored"
+    },
+    "api": {
+      "rateLimited": "Too many comments. Please try again later.",
+      "authRequired": "Please sign in to comment.",
+      "commentTooLong": "Comment exceeds maximum length.",
+      "commentEmpty": "Comment cannot be empty.",
+      "posted": "Comment posted successfully."
+    }
+  }
+}

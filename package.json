@@ -1,0 +1,34 @@
+{
+  "name": "@rmdes/indiekit-endpoint-comments",
+  "version": "1.0.0",
+  "description": "Comment endpoint for Indiekit. Allows visitors to authenticate via IndieAuth/RelMeAuth and post comments on blog posts.",
+  "keywords": [
+    "indiekit",
+    "indiekit-plugin",
+    "indieweb",
+    "comments",
+    "indieauth"
+  ],
+  "author": {
+    "name": "Ricardo Mendes",
+    "url": "https://rmendes.net"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "type": "module",
+  "main": "index.js",
+  "exports": "./index.js",
+  "files": [
+    "lib",
+    "locales",
+    "views",
+    "index.js"
+  ],
+  "dependencies": {
+    "@indiekit/error": "^1.0.0-beta.25",
+    "@indiekit/frontend": "^1.0.0-beta.25",
+    "cookie-parser": "^1.4.6"
+  }
+}

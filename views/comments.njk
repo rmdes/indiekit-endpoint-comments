@@ -1,0 +1,140 @@
+{% extends "document.njk" %}
+
+{% block content %}
+<div class="s-flow">
+  <h1>{{ __("comments.title") if __ else "Comments" }}</h1>
+
+  {% if error %}
+  <p class="badge badge--red">{{ error }}</p>
+  {% endif %}
+
+  {# === Stats Bar === #}
+  <div class="flex flex-wrap gap-4">
+    <div class="flex items-center gap-2 px-4 py-2 bg-white dark:bg-neutral-800 rounded-lg shadow-sm border">
+      <span class="badge badge--purple">{{ totalComments }}</span>
+      <span class="text-sm">{{ __("comments.dashboard.totalComments") if __ else "Total comments" }}</span>
+    </div>
+    <div class="flex items-center gap-2 px-4 py-2 bg-white dark:bg-neutral-800 rounded-lg shadow-sm border">
+      <span class="badge badge--green">{{ thisWeek }}</span>
+      <span class="text-sm">{{ __("comments.dashboard.thisWeek") if __ else "This week" }}</span>
+    </div>
+    <div class="flex items-center gap-2 px-4 py-2 bg-white dark:bg-neutral-800 rounded-lg shadow-sm border">
+      <span class="badge badge--offset">{{ uniqueCommenters }}</span>
+      <span class="text-sm">{{ __("comments.dashboard.uniqueCommenters") if __ else "Unique commenters" }}</span>
+    </div>
+    <div class="flex items-center gap-2 px-4 py-2 bg-white dark:bg-neutral-800 rounded-lg shadow-sm border">
+      <span class="badge badge--red">{{ hiddenComments }}</span>
+      <span class="text-sm">{{ __("comments.dashboard.hiddenComments") if __ else "Hidden comments" }}</span>
+    </div>
+  </div>
+
+  {# === Filters === #}
+  <div class="flex gap-2 items-center">
+    <a href="{{ baseUrl }}?status=all"
+       class="button button--small {{ '' if statusFilter == 'all' else 'button--secondary' }}">
+      {{ __("comments.dashboard.filterAll") if __ else "All" }}
+    </a>
+    <a href="{{ baseUrl }}?status=public"
+       class="button button--small {{ '' if statusFilter == 'public' else 'button--secondary' }}">
+      {{ __("comments.dashboard.filterPublic") if __ else "Public" }}
+    </a>
+    <a href="{{ baseUrl }}?status=deleted"
+       class="button button--small {{ '' if statusFilter == 'deleted' else 'button--secondary' }}">
+      {{ __("comments.dashboard.filterHidden") if __ else "Hidden" }}
+    </a>
+  </div>
+
+  {# === Comment List === #}
+  {% if comments.length %}
+  <ul class="space-y-4" role="list">
+    {% for comment in comments %}
+    <li class="p-4 bg-white dark:bg-neutral-800 rounded-lg shadow-sm border {{ 'opacity-60' if comment.status == 'deleted' }}">
+      <div class="flex items-start gap-3">
+        {# Avatar #}
+        {% if comment.author.photo %}
+        <img src="{{ comment.author.photo }}" alt="{{ comment.author.name }}"
+             class="w-10 h-10 rounded-full flex-shrink-0" loading="lazy">
+        {% else %}
+        <div class="w-10 h-10 rounded-full bg-neutral-200 dark:bg-neutral-700 flex-shrink-0 flex items-center justify-center text-sm font-bold">
+          {{ comment.author.name[0] | upper if comment.author.name else "?" }}
+        </div>
+        {% endif %}
+
+        <div class="flex-1 min-w-0">
+          {# Author + timestamp #}
+          <div class="flex items-center gap-2 flex-wrap">
+            <a href="{{ comment.author.url }}" class="font-medium text-sm hover:underline" target="_blank" rel="noopener">
+              {{ comment.author.name or comment.author.url }}
+            </a>
+            {% if comment.status == "deleted" %}
+            <span class="badge badge--red">Hidden</span>
+            {% endif %}
+            <time class="text-xs text-neutral-500" datetime="{{ comment.published }}">
+              {{ comment.published | date("MMM d, yyyy HH:mm") }}
+            </time>
+          </div>
+
+          {# Content #}
+          <div class="mt-1 text-sm">
+            {{ comment.content.html | safe if comment.content.html else comment.content.text }}
+          </div>
+
+          {# Target post #}
+          <div class="mt-1">
+            <a href="{{ comment.target }}" class="text-xs text-neutral-500 hover:underline truncate block" target="_blank">
+              on: {{ comment.target }}
+            </a>
+          </div>
+
+          {# Actions #}
+          <div class="mt-2 flex gap-2">
+            {% if comment.status == "deleted" %}
+            <form method="post" action="{{ baseUrl }}/hide">
+              <input type="hidden" name="id" value="{{ comment._id }}">
+              <input type="hidden" name="action" value="restore">
+              <button type="submit" class="button button--secondary button--small">
+                {{ __("comments.dashboard.restore") if __ else "Restore" }}
+              </button>
+            </form>
+            {% else %}
+            <form method="post" action="{{ baseUrl }}/hide">
+              <input type="hidden" name="id" value="{{ comment._id }}">
+              <button type="submit" class="button button--secondary button--small">
+                {{ __("comments.dashboard.hide") if __ else "Hide" }}
+              </button>
+            </form>
+            {% endif %}
+
+            <form method="post" action="{{ baseUrl }}/purge" x-data="{ confirm: false }">
+              <input type="hidden" name="id" value="{{ comment._id }}">
+              <button type="button"
+                      x-on:click="confirm ? $el.closest('form').submit() : confirm = true"
+                      x-text="confirm ? '{{ __("comments.dashboard.purgeConfirm") if __ else "Are you sure?" }}' : '{{ __("comments.dashboard.purge") if __ else "Purge" }}'"
+                      class="button button--warning button--small">
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </li>
+    {% endfor %}
+  </ul>
+
+  {# === Pagination === #}
+  {% if totalPages > 1 %}
+  <nav class="flex gap-2 justify-center mt-6" aria-label="Pagination">
+    {% if page > 1 %}
+    <a href="{{ baseUrl }}?page={{ page - 1 }}&status={{ statusFilter }}" class="button button--secondary button--small">Previous</a>
+    {% endif %}
+    <span class="text-sm self-center">Page {{ page }} of {{ totalPages }}</span>
+    {% if page < totalPages %}
+    <a href="{{ baseUrl }}?page={{ page + 1 }}&status={{ statusFilter }}" class="button button--secondary button--small">Next</a>
+    {% endif %}
+  </nav>
+  {% endif %}
+
+  {% else %}
+  <p class="text-neutral-500">{{ __("comments.dashboard.noComments") if __ else "No comments yet." }}</p>
+  {% endif %}
+</div>
+{% endblock %}
