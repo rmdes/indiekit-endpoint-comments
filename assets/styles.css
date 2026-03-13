@@ -1,0 +1,145 @@
+/* Comments endpoint styles — uses Indiekit design tokens */
+
+/* === Stats bar === */
+.comments-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-s);
+}
+
+.comments-stats__item {
+  align-items: center;
+  background: var(--color-offset);
+  border: var(--border-width-thin) solid var(--color-outline);
+  border-radius: var(--border-radius-small);
+  display: flex;
+  gap: var(--space-xs);
+  padding: var(--space-xs) var(--space-s);
+}
+
+.comments-stats__label {
+  font: var(--font-caption);
+  color: var(--color-on-offset);
+}
+
+/* === Filter bar === */
+.comments-filters {
+  display: flex;
+  gap: var(--space-xs);
+  align-items: center;
+}
+
+/* === Comment list === */
+.comments-list {
+  display: grid;
+  gap: var(--space-m);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* === Comment card === */
+.comments-card {
+  background: var(--color-offset);
+  border: var(--border-width-thin) solid var(--color-outline);
+  border-radius: var(--border-radius-small);
+  display: flex;
+  gap: var(--space-s);
+  padding: var(--space-m);
+}
+
+.comments-card--hidden {
+  opacity: 0.6;
+}
+
+/* === Avatar (CSS stacking fallback) === */
+.comments-avatar-wrap {
+  flex-shrink: 0;
+  height: 40px;
+  position: relative;
+  width: 40px;
+}
+
+.comments-avatar-wrap > img {
+  border-radius: 50%;
+  height: 100%;
+  inset: 0;
+  object-fit: cover;
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+}
+
+.comments-avatar--default {
+  align-items: center;
+  background: var(--color-offset-variant, var(--color-offset));
+  border-radius: 50%;
+  color: var(--color-on-offset);
+  display: flex;
+  font: var(--font-caption);
+  font-weight: 600;
+  height: 40px;
+  justify-content: center;
+  width: 40px;
+}
+
+/* === Card body === */
+.comments-card__body {
+  flex: 1;
+  min-width: 0;
+}
+
+.comments-card__header {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+}
+
+.comments-card__author {
+  font: var(--font-label);
+  font-size: inherit;
+}
+
+.comments-card__author a {
+  color: var(--color-on-background);
+  text-decoration: none;
+}
+
+.comments-card__author a:hover {
+  text-decoration: underline;
+}
+
+.comments-card__time {
+  color: var(--color-on-offset);
+  font: var(--font-caption);
+}
+
+.comments-card__content {
+  font: var(--font-body);
+  margin-block-start: var(--space-2xs);
+}
+
+.comments-card__target {
+  margin-block-start: var(--space-2xs);
+}
+
+.comments-card__target a {
+  color: var(--color-on-offset);
+  font: var(--font-caption);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
+}
+
+.comments-card__target a:hover {
+  color: var(--color-on-background);
+}
+
+/* === Card actions === */
+.comments-card__actions {
+  display: flex;
+  gap: var(--space-xs);
+  margin-block-start: var(--space-s);
+}

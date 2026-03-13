@@ -20,7 +20,9 @@
       "commentPosted": "Comment posted",
       "commentHidden": "Comment hidden",
       "commentPurged": "Comment purged",
-      "commentRestored": "Comment restored"
+      "commentRestored": "Comment restored",
+      "previous": "Previous",
+      "next": "Next"
     },
     "api": {
       "rateLimited": "Too many comments. Please try again later.",

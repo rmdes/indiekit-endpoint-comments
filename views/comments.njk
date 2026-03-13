@@ -1,35 +1,37 @@
 {% extends "document.njk" %}
 
 {% block content %}
+<link rel="stylesheet" href="/assets/@rmdes-indiekit-endpoint-comments/styles.css">
+
 <div class="s-flow">
   <h1>{{ __("comments.title") if __ else "Comments" }}</h1>
 
   {% if error %}
-  <p class="badge badge--red">{{ error }}</p>
+  {{ badge({ color: "red", text: error }) }}
   {% endif %}
 
-  {# === Stats Bar === #}
-  <div class="flex flex-wrap gap-4">
-    <div class="flex items-center gap-2 px-4 py-2 bg-white dark:bg-neutral-800 rounded-lg shadow-sm border">
-      <span class="badge badge--purple">{{ totalComments }}</span>
-      <span class="text-sm">{{ __("comments.dashboard.totalComments") if __ else "Total comments" }}</span>
+  {# === Stats bar === #}
+  <div class="comments-stats">
+    <div class="comments-stats__item">
+      {{ badge({ color: "purple", text: totalComments, size: "small" }) }}
+      <span class="comments-stats__label">{{ __("comments.dashboard.totalComments") if __ else "Total comments" }}</span>
     </div>
-    <div class="flex items-center gap-2 px-4 py-2 bg-white dark:bg-neutral-800 rounded-lg shadow-sm border">
-      <span class="badge badge--green">{{ thisWeek }}</span>
-      <span class="text-sm">{{ __("comments.dashboard.thisWeek") if __ else "This week" }}</span>
+    <div class="comments-stats__item">
+      {{ badge({ color: "green", text: thisWeek, size: "small" }) }}
+      <span class="comments-stats__label">{{ __("comments.dashboard.thisWeek") if __ else "This week" }}</span>
     </div>
-    <div class="flex items-center gap-2 px-4 py-2 bg-white dark:bg-neutral-800 rounded-lg shadow-sm border">
-      <span class="badge badge--offset">{{ uniqueCommenters }}</span>
-      <span class="text-sm">{{ __("comments.dashboard.uniqueCommenters") if __ else "Unique commenters" }}</span>
+    <div class="comments-stats__item">
+      {{ badge({ color: "offset", text: uniqueCommenters, size: "small" }) }}
+      <span class="comments-stats__label">{{ __("comments.dashboard.uniqueCommenters") if __ else "Unique commenters" }}</span>
     </div>
-    <div class="flex items-center gap-2 px-4 py-2 bg-white dark:bg-neutral-800 rounded-lg shadow-sm border">
-      <span class="badge badge--red">{{ hiddenComments }}</span>
-      <span class="text-sm">{{ __("comments.dashboard.hiddenComments") if __ else "Hidden comments" }}</span>
+    <div class="comments-stats__item">
+      {{ badge({ color: "red", text: hiddenComments, size: "small" }) }}
+      <span class="comments-stats__label">{{ __("comments.dashboard.hiddenComments") if __ else "Hidden comments" }}</span>
     </div>
   </div>
 
   {# === Filters === #}
-  <div class="flex gap-2 items-center">
+  <div class="comments-filters">
     <a href="{{ baseUrl }}?status=all"
        class="button button--small {{ '' if statusFilter == 'all' else 'button--secondary' }}">
       {{ __("comments.dashboard.filterAll") if __ else "All" }}
@@ -44,50 +46,54 @@
     </a>
   </div>
 
-  {# === Comment List === #}
+  {# === Comment list === #}
   {% if comments.length %}
-  <ul class="space-y-4" role="list">
+  <ul class="comments-list" role="list">
     {% for comment in comments %}
-    <li class="p-4 bg-white dark:bg-neutral-800 rounded-lg shadow-sm border {{ 'opacity-60' if comment.status == 'deleted' }}">
-      <div class="flex items-start gap-3">
-        {# Avatar #}
-        {% if comment.author.photo %}
-        <img src="{{ comment.author.photo }}" alt="{{ comment.author.name }}"
-             class="w-10 h-10 rounded-full flex-shrink-0" loading="lazy">
-        {% else %}
-        <div class="w-10 h-10 rounded-full bg-neutral-200 dark:bg-neutral-700 flex-shrink-0 flex items-center justify-center text-sm font-bold">
-          {{ comment.author.name[0] | upper if comment.author.name else "?" }}
+    <li>
+      <article class="comments-card {{ 'comments-card--hidden' if comment.status == 'deleted' }}">
+        {# Avatar with CSS stacking fallback #}
+        <div class="comments-avatar-wrap" data-avatar-fallback>
+          {% if comment.author.photo %}
+          <img src="{{ comment.author.photo }}" alt="" loading="lazy">
+          {% endif %}
+          <span class="comments-avatar--default" aria-hidden="true">
+            {{ comment.author.name[0] | upper if comment.author.name else "?" }}
+          </span>
         </div>
-        {% endif %}
 
-        <div class="flex-1 min-w-0">
-          {# Author + timestamp #}
-          <div class="flex items-center gap-2 flex-wrap">
-            <a href="{{ comment.author.url }}" class="font-medium text-sm hover:underline" target="_blank" rel="noopener">
-              {{ comment.author.name or comment.author.url }}
-            </a>
+        <div class="comments-card__body">
+          {# Author + status + timestamp #}
+          <div class="comments-card__header">
+            <span class="comments-card__author">
+              <a href="{{ comment.author.url }}" target="_blank" rel="noopener">
+                {{ comment.author.name or comment.author.url }}
+              </a>
+            </span>
             {% if comment.status == "deleted" %}
-            <span class="badge badge--red">Hidden</span>
+            {{ badge({ color: "red", text: "Hidden", size: "small" }) }}
             {% endif %}
-            <time class="text-xs text-neutral-500" datetime="{{ comment.published }}">
-              {{ comment.published | date("MMM d, yyyy HH:mm") }}
+            {% if comment.published %}
+            <time class="comments-card__time" datetime="{{ comment.published }}">
+              {{ comment.published | date("PPp") }}
             </time>
+            {% endif %}
           </div>
 
           {# Content #}
-          <div class="mt-1 text-sm">
+          <div class="comments-card__content">
             {{ comment.content.html | safe if comment.content.html else comment.content.text }}
           </div>
 
           {# Target post #}
-          <div class="mt-1">
-            <a href="{{ comment.target }}" class="text-xs text-neutral-500 hover:underline truncate block" target="_blank">
+          <div class="comments-card__target">
+            <a href="{{ comment.target }}" target="_blank" rel="noopener">
               on: {{ comment.target }}
             </a>
           </div>
 
           {# Actions #}
-          <div class="mt-2 flex gap-2">
+          <div class="comments-card__actions">
             {% if comment.status == "deleted" %}
             <form method="post" action="{{ baseUrl }}/hide">
               <input type="hidden" name="id" value="{{ comment._id }}">
@@ -115,26 +121,35 @@
             </form>
           </div>
         </div>
-      </div>
+      </article>
     </li>
     {% endfor %}
   </ul>
 
   {# === Pagination === #}
   {% if totalPages > 1 %}
-  <nav class="flex gap-2 justify-center mt-6" aria-label="Pagination">
-    {% if page > 1 %}
-    <a href="{{ baseUrl }}?page={{ page - 1 }}&status={{ statusFilter }}" class="button button--secondary button--small">Previous</a>
-    {% endif %}
-    <span class="text-sm self-center">Page {{ page }} of {{ totalPages }}</span>
-    {% if page < totalPages %}
-    <a href="{{ baseUrl }}?page={{ page + 1 }}&status={{ statusFilter }}" class="button button--secondary button--small">Next</a>
-    {% endif %}
-  </nav>
+  {{ pagination({
+    previous: {
+      text: __("comments.dashboard.previous") if __ else "Previous",
+      href: baseUrl + "?page=" + (page - 1) + "&status=" + statusFilter
+    } if page > 1,
+    items: [],
+    next: {
+      text: __("comments.dashboard.next") if __ else "Next",
+      href: baseUrl + "?page=" + (page + 1) + "&status=" + statusFilter
+    } if page < totalPages,
+    results: {
+      from: ((page - 1) * 20) + 1,
+      to: page * 20 if page < totalPages else totalComments,
+      count: totalComments
+    }
+  }) }}
   {% endif %}
 
   {% else %}
-  <p class="text-neutral-500">{{ __("comments.dashboard.noComments") if __ else "No comments yet." }}</p>
+  {{ prose({ text: __("comments.dashboard.noComments") if __ else "No comments yet." }) }}
   {% endif %}
 </div>
+
+<script>document.addEventListener("error",function(e){var t=e.target;if(t.tagName==="IMG"&&t.closest("[data-avatar-fallback]"))t.remove()},true)</script>
 {% endblock %}
