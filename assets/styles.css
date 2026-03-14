@@ -1,5 +1,18 @@
 /* Comments endpoint styles — uses Indiekit design tokens */
 
+/* Reset .s-flow descendant owl (& * + *) margins on component internals.
+   Indiekit's .s-flow injects margin-block-start: var(--flow-space) on ANY
+   element following a sibling at any depth. This breaks flex/grid layouts
+   where children must sit flush. */
+.comments-stats > *,
+.comments-filters > *,
+.comments-card__header > *,
+.comments-card__footer > *,
+.comments-card__actions > *,
+.comments-card__actions button {
+  margin: 0;
+}
+
 /* === Stats bar === */
 .comments-stats {
   display: grid;
