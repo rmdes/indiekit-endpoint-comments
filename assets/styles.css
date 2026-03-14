@@ -79,9 +79,11 @@
   display: flex;
   font-size: 0.875rem;
   font-weight: 600;
-  height: 36px;
+  height: 100%;
+  inset: 0;
   justify-content: center;
-  width: 36px;
+  position: absolute;
+  width: 100%;
 }
 
 /* === Card body === */
