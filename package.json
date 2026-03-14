@@ -1,6 +1,6 @@
 {
   "name": "@rmdes/indiekit-endpoint-comments",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Comment endpoint for Indiekit. Allows visitors to authenticate via IndieAuth/RelMeAuth and post comments on blog posts.",
   "keywords": [
     "indiekit",
