@@ -4,8 +4,6 @@
 <link rel="stylesheet" href="/assets/@rmdes-indiekit-endpoint-comments/styles.css">
 
 <div class="s-flow">
-  <h1>{{ __("comments.title") if __ else "Comments" }}</h1>
-
   {% if error %}
   {{ badge({ color: "red", text: error }) }}
   {% endif %}
@@ -85,40 +83,38 @@
             {{ comment.content.html | safe if comment.content.html else comment.content.text }}
           </div>
 
-          {# Target post #}
-          <div class="comments-card__target">
-            <a href="{{ comment.target }}" target="_blank" rel="noopener">
-              on: {{ comment.target }}
+          {# Target + Actions on same row #}
+          <div class="comments-card__footer">
+            <a href="{{ comment.target }}" class="comments-card__target" target="_blank" rel="noopener">
+              {{ comment.target | replace("https://", "") | truncate(50) }}
             </a>
-          </div>
+            <div class="comments-card__actions">
+              {% if comment.status == "deleted" %}
+              <form method="post" action="{{ baseUrl }}/hide">
+                <input type="hidden" name="id" value="{{ comment._id }}">
+                <input type="hidden" name="action" value="restore">
+                <button type="submit" class="button button--secondary button--small">
+                  {{ __("comments.dashboard.restore") if __ else "Restore" }}
+                </button>
+              </form>
+              {% else %}
+              <form method="post" action="{{ baseUrl }}/hide">
+                <input type="hidden" name="id" value="{{ comment._id }}">
+                <button type="submit" class="button button--secondary button--small">
+                  {{ __("comments.dashboard.hide") if __ else "Hide" }}
+                </button>
+              </form>
+              {% endif %}
 
-          {# Actions #}
-          <div class="comments-card__actions">
-            {% if comment.status == "deleted" %}
-            <form method="post" action="{{ baseUrl }}/hide">
-              <input type="hidden" name="id" value="{{ comment._id }}">
-              <input type="hidden" name="action" value="restore">
-              <button type="submit" class="button button--secondary button--small">
-                {{ __("comments.dashboard.restore") if __ else "Restore" }}
-              </button>
-            </form>
-            {% else %}
-            <form method="post" action="{{ baseUrl }}/hide">
-              <input type="hidden" name="id" value="{{ comment._id }}">
-              <button type="submit" class="button button--secondary button--small">
-                {{ __("comments.dashboard.hide") if __ else "Hide" }}
-              </button>
-            </form>
-            {% endif %}
-
-            <form method="post" action="{{ baseUrl }}/purge" x-data="{ confirm: false }">
-              <input type="hidden" name="id" value="{{ comment._id }}">
-              <button type="button"
-                      x-on:click="confirm ? $el.closest('form').submit() : confirm = true"
-                      x-text="confirm ? '{{ __("comments.dashboard.purgeConfirm") if __ else "Are you sure?" }}' : '{{ __("comments.dashboard.purge") if __ else "Purge" }}'"
-                      class="button button--warning button--small">
-              </button>
-            </form>
+              <form method="post" action="{{ baseUrl }}/purge" x-data="{ confirm: false }">
+                <input type="hidden" name="id" value="{{ comment._id }}">
+                <button type="button"
+                        x-on:click="confirm ? $el.closest('form').submit() : confirm = true"
+                        x-text="confirm ? '{{ __("comments.dashboard.purgeConfirm") if __ else "Are you sure?" }}' : '{{ __("comments.dashboard.purge") if __ else "Purge" }}'"
+                        class="button button--warning button--small">
+                </button>
+              </form>
+            </div>
           </div>
         </div>
       </article>

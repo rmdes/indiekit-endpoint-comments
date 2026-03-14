@@ -2,9 +2,9 @@
 
 /* === Stats bar === */
 .comments-stats {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-s);
+  display: grid;
+  gap: var(--space-xs);
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
 }
 
 .comments-stats__item {
@@ -18,21 +18,21 @@
 }
 
 .comments-stats__label {
-  font: var(--font-caption);
   color: var(--color-on-offset);
+  font: var(--font-caption);
 }
 
 /* === Filter bar === */
 .comments-filters {
+  align-items: center;
   display: flex;
   gap: var(--space-xs);
-  align-items: center;
 }
 
 /* === Comment list === */
 .comments-list {
   display: grid;
-  gap: var(--space-m);
+  gap: var(--space-s);
   list-style: none;
   margin: 0;
   padding: 0;
@@ -40,24 +40,25 @@
 
 /* === Comment card === */
 .comments-card {
+  align-items: flex-start;
   background: var(--color-offset);
   border: var(--border-width-thin) solid var(--color-outline);
   border-radius: var(--border-radius-small);
   display: flex;
   gap: var(--space-s);
-  padding: var(--space-m);
+  padding: var(--space-s) var(--space-m);
 }
 
 .comments-card--hidden {
-  opacity: 0.6;
+  opacity: 0.55;
 }
 
 /* === Avatar (CSS stacking fallback) === */
 .comments-avatar-wrap {
   flex-shrink: 0;
-  height: 40px;
+  height: 36px;
   position: relative;
-  width: 40px;
+  width: 36px;
 }
 
 .comments-avatar-wrap > img {
@@ -72,15 +73,15 @@
 
 .comments-avatar--default {
   align-items: center;
-  background: var(--color-offset-variant, var(--color-offset));
+  background: var(--color-primary);
   border-radius: 50%;
-  color: var(--color-on-offset);
+  color: var(--color-on-primary);
   display: flex;
-  font: var(--font-caption);
+  font-size: 0.875rem;
   font-weight: 600;
-  height: 40px;
+  height: 36px;
   justify-content: center;
-  width: 40px;
+  width: 36px;
 }
 
 /* === Card body === */
@@ -90,15 +91,14 @@
 }
 
 .comments-card__header {
-  align-items: center;
+  align-items: baseline;
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-xs);
+  gap: var(--space-2xs) var(--space-xs);
 }
 
 .comments-card__author {
   font: var(--font-label);
-  font-size: inherit;
 }
 
 .comments-card__author a {
@@ -120,26 +120,37 @@
   margin-block-start: var(--space-2xs);
 }
 
-.comments-card__target {
-  margin-block-start: var(--space-2xs);
+.comments-card__content p {
+  margin: 0;
 }
 
-.comments-card__target a {
+/* === Card footer (target + actions) === */
+.comments-card__footer {
+  align-items: center;
+  border-block-start: var(--border-width-thin) solid var(--color-outline);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs) var(--space-m);
+  justify-content: space-between;
+  margin-block-start: var(--space-s);
+  padding-block-start: var(--space-xs);
+}
+
+.comments-card__target {
   color: var(--color-on-offset);
   font: var(--font-caption);
+  min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  display: block;
 }
 
-.comments-card__target a:hover {
+.comments-card__target:hover {
   color: var(--color-on-background);
 }
 
-/* === Card actions === */
 .comments-card__actions {
   display: flex;
+  flex-shrink: 0;
   gap: var(--space-xs);
-  margin-block-start: var(--space-s);
 }
