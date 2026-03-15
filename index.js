@@ -53,7 +53,6 @@ export default class CommentsEndpoint {
     publicRouter.get("/api/is-owner", commentsController.isOwner);
     publicRouter.post("/api/submit", commentsController.submit);
     publicRouter.post("/api/reply", commentsController.submitReply);
-    publicRouter.get("/api/owner-replies", commentsController.ownerReplies);
     publicRouter.post("/api/auth", commentsController.startAuth);
     publicRouter.get("/auth/callback", commentsController.authCallback);
     return publicRouter;
