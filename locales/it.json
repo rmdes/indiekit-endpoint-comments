@@ -1,0 +1,35 @@
+{
+  "comments": {
+    "title": "Commenti",
+    "dashboard": {
+      "stats": "Statistiche",
+      "totalComments": "Commenti totali",
+      "thisWeek": "Questa settimana",
+      "uniqueCommenters": "Commentatori unici",
+      "hiddenComments": "Commenti nascosti",
+      "commentList": "Elenco commenti",
+      "filterAll": "Tutti",
+      "filterPublic": "Pubblici",
+      "filterHidden": "Nascosti",
+      "hide": "Nascondi",
+      "purge": "Elimina",
+      "purgeConfirm": "Sei sicuro?",
+      "restore": "Ripristina",
+      "noComments": "Nessun commento ancora.",
+      "recentActivity": "Attività recente",
+      "commentPosted": "Commento pubblicato",
+      "commentHidden": "Commento nascosto",
+      "commentPurged": "Commento eliminato",
+      "commentRestored": "Commento ripristinato",
+      "previous": "Precedente",
+      "next": "Successivo"
+    },
+    "api": {
+      "rateLimited": "Troppi commenti. Riprova più tardi.",
+      "authRequired": "Accedi per commentare.",
+      "commentTooLong": "Il commento supera la lunghezza massima.",
+      "commentEmpty": "Il commento non può essere vuoto.",
+      "posted": "Commento pubblicato con successo."
+    }
+  }
+}

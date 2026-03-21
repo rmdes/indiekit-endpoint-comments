@@ -1,0 +1,35 @@
+{
+  "comments": {
+    "title": "टिप्पणियाँ",
+    "dashboard": {
+      "stats": "आँकड़े",
+      "totalComments": "कुल टिप्पणियाँ",
+      "thisWeek": "इस सप्ताह",
+      "uniqueCommenters": "अद्वितीय टिप्पणीकार",
+      "hiddenComments": "छिपी टिप्पणियाँ",
+      "commentList": "टिप्पणी सूची",
+      "filterAll": "सभी",
+      "filterPublic": "सार्वजनिक",
+      "filterHidden": "छिपी हुई",
+      "hide": "छिपाएँ",
+      "purge": "हटाएँ",
+      "purgeConfirm": "क्या आप सुनिश्चित हैं?",
+      "restore": "पुनर्स्थापित करें",
+      "noComments": "अभी तक कोई टिप्पणी नहीं।",
+      "recentActivity": "हाल की गतिविधि",
+      "commentPosted": "टिप्पणी प्रकाशित",
+      "commentHidden": "टिप्पणी छिपाई गई",
+      "commentPurged": "टिप्पणी हटाई गई",
+      "commentRestored": "टिप्पणी पुनर्स्थापित",
+      "previous": "पिछला",
+      "next": "अगला"
+    },
+    "api": {
+      "rateLimited": "बहुत अधिक टिप्पणियाँ। कृपया बाद में पुनः प्रयास करें।",
+      "authRequired": "टिप्पणी करने के लिए कृपया साइन इन करें।",
+      "commentTooLong": "टिप्पणी अधिकतम लंबाई से अधिक है।",
+      "commentEmpty": "टिप्पणी खाली नहीं हो सकती।",
+      "posted": "टिप्पणी सफलतापूर्वक प्रकाशित।"
+    }
+  }
+}

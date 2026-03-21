@@ -1,0 +1,35 @@
+{
+  "comments": {
+    "title": "Kommentarer",
+    "dashboard": {
+      "stats": "Statistik",
+      "totalComments": "Totalt antal kommentarer",
+      "thisWeek": "Denna vecka",
+      "uniqueCommenters": "Unika kommentatorer",
+      "hiddenComments": "Dolda kommentarer",
+      "commentList": "Kommentarslista",
+      "filterAll": "Alla",
+      "filterPublic": "Offentliga",
+      "filterHidden": "Dolda",
+      "hide": "Dölj",
+      "purge": "Radera",
+      "purgeConfirm": "Är du säker?",
+      "restore": "Återställ",
+      "noComments": "Inga kommentarer ännu.",
+      "recentActivity": "Senaste aktivitet",
+      "commentPosted": "Kommentar publicerad",
+      "commentHidden": "Kommentar dold",
+      "commentPurged": "Kommentar raderad",
+      "commentRestored": "Kommentar återställd",
+      "previous": "Föregående",
+      "next": "Nästa"
+    },
+    "api": {
+      "rateLimited": "För många kommentarer. Försök igen senare.",
+      "authRequired": "Logga in för att kommentera.",
+      "commentTooLong": "Kommentaren överskrider maximal längd.",
+      "commentEmpty": "Kommentaren får inte vara tom.",
+      "posted": "Kommentar publicerad."
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "comments": {
+    "title": "Коментари",
+    "dashboard": {
+      "stats": "Статистика",
+      "totalComments": "Укупно коментара",
+      "thisWeek": "Ове недеље",
+      "uniqueCommenters": "Јединствени коментатори",
+      "hiddenComments": "Скривени коментари",
+      "commentList": "Листа коментара",
+      "filterAll": "Сви",
+      "filterPublic": "Јавни",
+      "filterHidden": "Скривени",
+      "hide": "Сакриј",
+      "purge": "Обриши",
+      "purgeConfirm": "Да ли сте сигурни?",
+      "restore": "Врати",
+      "noComments": "Још нема коментара.",
+      "recentActivity": "Недавна активност",
+      "commentPosted": "Коментар објављен",
+      "commentHidden": "Коментар сакривен",
+      "commentPurged": "Коментар обрисан",
+      "commentRestored": "Коментар враћен",
+      "previous": "Претходни",
+      "next": "Следећи"
+    },
+    "api": {
+      "rateLimited": "Превише коментара. Покушајте поново касније.",
+      "authRequired": "Пријавите се да бисте коментарисали.",
+      "commentTooLong": "Коментар прелази максималну дужину.",
+      "commentEmpty": "Коментар не може бити празан.",
+      "posted": "Коментар успешно објављен."
+    }
+  }
+}

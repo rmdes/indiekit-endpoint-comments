@@ -1,0 +1,35 @@
+{
+  "comments": {
+    "title": "Reacties",
+    "dashboard": {
+      "stats": "Statistieken",
+      "totalComments": "Totaal reacties",
+      "thisWeek": "Deze week",
+      "uniqueCommenters": "Unieke reageerders",
+      "hiddenComments": "Verborgen reacties",
+      "commentList": "Reactielijst",
+      "filterAll": "Alle",
+      "filterPublic": "Openbaar",
+      "filterHidden": "Verborgen",
+      "hide": "Verbergen",
+      "purge": "Verwijderen",
+      "purgeConfirm": "Weet je het zeker?",
+      "restore": "Herstellen",
+      "noComments": "Nog geen reacties.",
+      "recentActivity": "Recente activiteit",
+      "commentPosted": "Reactie geplaatst",
+      "commentHidden": "Reactie verborgen",
+      "commentPurged": "Reactie verwijderd",
+      "commentRestored": "Reactie hersteld",
+      "previous": "Vorige",
+      "next": "Volgende"
+    },
+    "api": {
+      "rateLimited": "Te veel reacties. Probeer het later opnieuw.",
+      "authRequired": "Log in om te reageren.",
+      "commentTooLong": "Reactie overschrijdt de maximale lengte.",
+      "commentEmpty": "Reactie mag niet leeg zijn.",
+      "posted": "Reactie succesvol geplaatst."
+    }
+  }
+}

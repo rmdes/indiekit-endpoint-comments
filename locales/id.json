@@ -1,0 +1,35 @@
+{
+  "comments": {
+    "title": "Komentar",
+    "dashboard": {
+      "stats": "Statistik",
+      "totalComments": "Total komentar",
+      "thisWeek": "Minggu ini",
+      "uniqueCommenters": "Komentator unik",
+      "hiddenComments": "Komentar tersembunyi",
+      "commentList": "Daftar komentar",
+      "filterAll": "Semua",
+      "filterPublic": "Publik",
+      "filterHidden": "Tersembunyi",
+      "hide": "Sembunyikan",
+      "purge": "Hapus",
+      "purgeConfirm": "Apakah Anda yakin?",
+      "restore": "Pulihkan",
+      "noComments": "Belum ada komentar.",
+      "recentActivity": "Aktivitas terbaru",
+      "commentPosted": "Komentar dikirim",
+      "commentHidden": "Komentar disembunyikan",
+      "commentPurged": "Komentar dihapus",
+      "commentRestored": "Komentar dipulihkan",
+      "previous": "Sebelumnya",
+      "next": "Berikutnya"
+    },
+    "api": {
+      "rateLimited": "Terlalu banyak komentar. Silakan coba lagi nanti.",
+      "authRequired": "Silakan masuk untuk berkomentar.",
+      "commentTooLong": "Komentar melebihi panjang maksimum.",
+      "commentEmpty": "Komentar tidak boleh kosong.",
+      "posted": "Komentar berhasil dikirim."
+    }
+  }
+}
