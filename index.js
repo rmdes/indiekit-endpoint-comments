@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser";
 
 import { commentsController } from "./lib/controllers/comments.js";
 import { createIndexes } from "./lib/storage/comment-items.js";
+import { COMMENTS_BLOCKS } from "./lib/blocks.js";
 
 const defaults = {
   mountPath: "/comments",
@@ -36,6 +37,10 @@ export default class CommentsEndpoint {
       text: "comments.title",
       requiresDatabase: true,
     };
+  }
+
+  get blocks() {
+    return COMMENTS_BLOCKS;
   }
 
   get routes() {
