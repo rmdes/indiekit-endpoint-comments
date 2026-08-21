@@ -1,6 +1,6 @@
 {
   "name": "@rmdes/indiekit-endpoint-comments",
-  "version": "1.0.17",
+  "version": "1.2.0",
   "description": "Comment endpoint for Indiekit. Allows visitors to authenticate via IndieAuth/RelMeAuth and post comments on blog posts.",
   "keywords": [
     "indiekit",
@@ -19,6 +19,9 @@
   },
   "type": "module",
   "main": "index.js",
+  "scripts": {
+    "test": "node --test"
+  },
   "exports": "./index.js",
   "files": [
     "assets",
@@ -30,6 +33,7 @@
   "dependencies": {
     "@indiekit/error": "^1.0.0-beta.25",
     "@indiekit/frontend": "^1.0.0-beta.25",
-    "cookie-parser": "^1.4.6"
+    "cookie-parser": "^1.4.6",
+    "microformats-parser": "^2.0.6"
   }
 }
