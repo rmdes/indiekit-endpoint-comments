@@ -35,5 +35,9 @@
     "@indiekit/frontend": "^1.0.0-beta.25",
     "cookie-parser": "^1.4.6",
     "microformats-parser": "^2.0.6"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rmdes/indiekit-endpoint-comments.git"
   }
 }
